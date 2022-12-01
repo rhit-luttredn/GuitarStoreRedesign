@@ -41,6 +41,19 @@ public class GuitarSpec {
 				&& spec.getBackWood() == this.backWood && spec.getTopWood() == this.topWood;
 	}
 	
+	public boolean softEquals(Object obj) {
+		GuitarSpec spec = (GuitarSpec) obj;
+		Builder specBuilder = spec.getBuilder();
+		String specModel = spec.getModel();
+		Type specType = spec.getType();
+		
+		return (spec.getBuilder() == this.builder) && 
+				(spec.getModel().equals(this.model)) && 
+				(spec.getType() == this.type) && 
+				(spec.getBackWood() == this.backWood) && 
+				(spec.getTopWood() == this.topWood);
+	}
+	
 	@Override
 	public String toString() {
 		return this.builder + " " + this.model + " " + this.type + " " + this.backWood + " " + this.topWood;

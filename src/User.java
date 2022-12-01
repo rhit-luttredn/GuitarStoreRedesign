@@ -18,4 +18,9 @@ public class User {
 		
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return this.username + ": " + this.password;
+	}
 }
