@@ -17,4 +17,19 @@ public enum Wood {
 		default: return null;
 		}
 	}
+	
+	public static Wood fromString(String str) {
+		switch(str) {
+		case "Indian Rosewood": return INDIAN_ROSEWOOD;
+		case "Brazilian Rosewood": return BRAZILIAN_ROSEWOOD;
+		case "Mahogany": return MAHOGANY;
+		case "Maple": return MAPLE;
+		case "Cocobolo": return COCOBOLO;
+		case "Adirondack": return ADIRONDACK;
+		case "Alder": return ALDER;
+		case "Sitka": return SITKA;
+		case "Any": return ANY;
+		default: return null;
+		}
+	}
 }

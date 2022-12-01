@@ -16,4 +16,18 @@ public enum Builder {
 		default: return null;
 		}
 	}
+	
+	public static Builder fromString(String str) {
+		switch(str) {
+		case "Fender": return FENDER;
+		case "Martin": return MARTIN;
+		case "Gibson": return GIBSON;
+		case "Collings": return COLLINGS;
+		case "Olson": return OLSON;
+		case "Ryan": return RYAN;
+		case "PRS": return PRS;
+		case "ANY": return ANY;
+		default: return null;
+		}
+	}
 }
