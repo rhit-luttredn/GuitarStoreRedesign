@@ -48,7 +48,7 @@ public class Main {
 		try {
             System.out.println("Please enter your username.");
             String user = sc.nextLine();
-            //TODO: check if username in systemm
+            //TODO: check if username in system
             //if no, inform user, prompt again
             //if yes, continue
             System.out.println("Please enter your password.");
