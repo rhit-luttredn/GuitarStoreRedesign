@@ -40,4 +40,9 @@ public class GuitarSpec {
 		return spec.getBuilder() == this.builder && spec.getModel().equals(this.model) && spec.getType() == this.type 
 				&& spec.getBackWood() == this.backWood && spec.getTopWood() == this.topWood;
 	}
+	
+	@Override
+	public String toString() {
+		return this.builder + " " + this.model + " " + this.type + " " + this.backWood + " " + this.topWood;
+	}
 }

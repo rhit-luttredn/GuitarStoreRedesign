@@ -11,4 +11,13 @@ public enum Type {
 		default: return null;
 		}
 	}
+	
+	public static Type fromString(String str) {
+		switch(str) {
+		case "Acoustic": return ACOUSTIC;
+		case "Electric": return ELECTRIC;
+		case "Any": return ANY;
+		default: return null;
+		}
+	}
 }

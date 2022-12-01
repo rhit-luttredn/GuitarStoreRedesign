@@ -25,4 +25,9 @@ public class Guitar {
 	public GuitarSpec getSpec() {
 		return this.spec;
 	}
+	
+	@Override
+	public String toString() {
+		return "Guitar " + this.serialNumber + ": $" + this.price + " " + this.spec;
+	}
 }
