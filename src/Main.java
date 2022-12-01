@@ -19,6 +19,11 @@ public class Main {
 	private HashMap<String, User> users; // username, user
 	private Inventory inventory;
 	public Scanner sc;
+
+	public static void main(String[] args) {
+		Main main = new Main();
+	}
+	
 	public Main() {
 		this.sc = new Scanner(System.in);
 
@@ -26,12 +31,8 @@ public class Main {
 		this.populateUsers();
 
 		// TODO: ask user for file to use
-//		this.handleCreateInventory();
+		this.handleCreateInventory();
 		this.handleLogin();
-	}
-
-	public static void main(String[] args) {
-		Main main = new Main();
 	}
 
 	private void populateUsers() {
