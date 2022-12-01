@@ -1,9 +1,11 @@
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.NoSuchElementException;
+import java.util.Scanner; 
 
 public class Main {
 	public static final String INVENTORY_FILE = "inventory.csv";
@@ -13,6 +15,10 @@ public class Main {
 	private Inventory inventory;
 	public Scanner sc;
 	
+	public static void main(String[] args) {
+		Main main = new Main();
+	}
+	
 	public Main() {
 		this.sc = new Scanner(System.in);
 		
@@ -20,15 +26,14 @@ public class Main {
 		this.populateUsers();
 		
 		// TODO: ask user for file to use
-		this.handleCreateInventory();
+//		this.handleCreateInventory();
+		this.handleLogin();
 	}
 
-	public static void main(String[] args) {
-		Main main = new Main();
-	}
+	
 	
 	private void populateUsers() {
-		// TODO: Ask user for file to use?
+		// TODO: Ass
 		
 		
 		// TODO: read file of users and populate users list
@@ -36,10 +41,26 @@ public class Main {
 	
 	private void handleCommand() {
 		// Main loop for handling commands
+		System.out.println("TODO: await commands");
 	}
 	
-	private void handleLogin(String username, String password) {
-		
+	private void handleLogin() {
+		try {
+            System.out.println("Please enter your username.");
+            String user = sc.nextLine();
+            //TODO: check if username in system
+            //if no, inform user, prompt again
+            //if yes, continue
+            System.out.println("Please enter your password.");
+            String pass = sc.nextLine();
+            //TODO: check if password matches
+            //if no, ask again
+            //if yes, continue
+            this.handleCommand();
+        } catch(IllegalStateException | NoSuchElementException e) {
+            // System.in has been closed
+            System.out.println("System.in was closed; exiting");
+        }
 	}
 	
 	private void handleCreateInventory() {
