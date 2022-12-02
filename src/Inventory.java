@@ -11,10 +11,15 @@ import org.apache.commons.csv.QuoteMode;
 
 public class Inventory {
 	private List<Guitar> guitars; // Serial Number, Guitar
+	private HashMap<Builder, List<Guitar>> builderHash;
+	private HashMap<String, List<Guitar>> modelHash;
+	private HashMap<Type, List<Guitar>> typeHash;
+	private HashMap<Wood, List<Guitar>> backwoodHash;
+	private HashMap<Wood, List<Guitar>> topwoodHash;
 
 	public Inventory(Reader file) throws Exception {
 		this.guitars = new LinkedList<>();
-		
+
 		// TODO: Parse file and populate guitars
 		CSVParser parser = CSVParser.parse(file, CSVFormat.DEFAULT.withFirstRecordAsHeader());
 		for (CSVRecord csvRecord : parser) {
@@ -26,21 +31,52 @@ public class Inventory {
 			Type type = Type.fromString(csvRecord.get(4));
 			Wood backWood = Wood.fromString(csvRecord.get(5));
 			Wood topWood = Wood.fromString(csvRecord.get(6));
-			
+
 			GuitarSpec spec = new GuitarSpec(builder, model, type, backWood, topWood);
 			Guitar guitar = new Guitar(serialNumber, price, spec);
-			
-			this.guitars.add(guitar);
+
+			this.addGuitar(serialNumber, price, spec);
 		}
 		System.out.println(this.guitars);
 	}
 
 	public void addGuitar(String serial, Double price, GuitarSpec spec) {
-		this.guitars.add(new Guitar(serial, price, spec));
+		Guitar guitar = new Guitar(serial, price, spec);
+		this.guitars.add(guitar);
+
+		// builderHash
+		Builder builder = spec.getBuilder();
+		if (!builderHash.containsKey(builder))
+			builderHash.put(builder, new LinkedList<Guitar>());
+		builderHash.get(builder).add(guitar);
+
+		// modelHash
+		String model = spec.getModel().toLowerCase();
+		if (!modelHash.containsKey(model))
+			modelHash.put(model, new LinkedList<Guitar>());
+		modelHash.get(model).add(guitar);
+
+		// typeHash
+		Type type = spec.getType();
+		if (!typeHash.containsKey(type))
+			typeHash.put(type, new LinkedList<Guitar>());
+		typeHash.get(type).add(guitar);
+
+		// backwoodHash
+		Wood backwood = spec.getBackWood();
+		if (!backwoodHash.containsKey(backwood))
+			backwoodHash.put(backwood, new LinkedList<Guitar>());
+		backwoodHash.get(backwood).add(guitar);
+
+		// topwoodHash
+		Wood topwood = spec.getTopWood();
+		if (!topwoodHash.containsKey(topwood))
+			topwoodHash.put(topwood, new LinkedList<Guitar>());
+		topwoodHash.get(topwood).add(guitar);
 	}
 
 	public void removeGuitar(String serialNumber) {
-		
+
 	}
 
 	public List<Guitar> searchGuitar(GuitarSpec spec) {
