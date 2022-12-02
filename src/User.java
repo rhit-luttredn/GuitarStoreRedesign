@@ -9,9 +9,8 @@ public class User {
 		this.password = password;
 	}
 	
-	public boolean verifyPassword(String username, String password) {
-		
-		return false;
+	public boolean verifyPassword(String password) {
+		return this.password.equals(password);
 	}
 	
 	public List<Guitar> searchGuitar(GuitarSpec spec) {

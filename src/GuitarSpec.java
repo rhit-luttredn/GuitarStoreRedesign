@@ -14,6 +14,14 @@ public class GuitarSpec {
 		this.topWood = topWood;
 	}
 	
+	public GuitarSpec(String builder, String model, String type, String backWood, String topWood) {
+		this.builder = Builder.fromString(builder);
+		this.model = model;
+		this.type = Type.fromString(type);
+		this.backWood = Wood.fromString(backWood);
+		this.topWood = Wood.fromString(topWood);
+	}
+
 	public Builder getBuilder() {
 		return this.builder;
 	}

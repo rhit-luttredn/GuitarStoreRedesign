@@ -35,8 +35,8 @@ public class Inventory {
 		System.out.println(this.guitars);
 	}
 
-	public void addGuitar(GuitarSpec spec) {
-
+	public void addGuitar(String serial, Double price, GuitarSpec spec) {
+		this.guitars.add(new Guitar(serial, price, spec));
 	}
 
 	public void removeGuitar(String serialNumber) {
