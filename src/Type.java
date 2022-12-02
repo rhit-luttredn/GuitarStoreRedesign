@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public enum Type {
 	ACOUSTIC, ELECTRIC, ANY;
@@ -16,8 +17,14 @@ public enum Type {
 		switch(str) {
 		case "Acoustic": return ACOUSTIC;
 		case "Electric": return ELECTRIC;
+		case "":
 		case "Any": return ANY;
 		default: return null;
 		}
+	}
+	
+	public static String printPossibleValues() {
+		String possible = Arrays.asList(values()).subList(0, values().length-1).toString();
+		return possible.substring(1, possible.length()-1);
 	}
 }

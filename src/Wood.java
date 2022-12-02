@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public enum Wood {
 	INDIAN_ROSEWOOD, BRAZILIAN_ROSEWOOD, MAHOGANY, MAPLE, COCOBOLO, ADIRONDACK, ALDER, SITKA, ANY;
@@ -28,8 +29,14 @@ public enum Wood {
 		case "Adirondack": return ADIRONDACK;
 		case "Alder": return ALDER;
 		case "Sitka": return SITKA;
+		case "":
 		case "Any": return ANY;
 		default: return null;
 		}
+	}
+	
+	public static String printPossibleValues() {
+		String possible = Arrays.asList(values()).subList(0, values().length-1).toString();
+		return possible.substring(1, possible.length()-1);
 	}
 }

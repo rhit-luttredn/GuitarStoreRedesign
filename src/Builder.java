@@ -1,5 +1,6 @@
+import java.util.Arrays;
 
-public enum Builder {
+public enum Builder{
 	FENDER, MARTIN, GIBSON, COLLINGS, OLSON, RYAN, PRS, ANY;
 	
 	@Override
@@ -18,16 +19,22 @@ public enum Builder {
 	}
 	
 	public static Builder fromString(String str) {
-		switch(str) {
-		case "Fender": return FENDER;
-		case "Martin": return MARTIN;
-		case "Gibson": return GIBSON;
-		case "Collings": return COLLINGS;
-		case "Olson": return OLSON;
-		case "Ryan": return RYAN;
-		case "PRS": return PRS;
-		case "ANY": return ANY;
+		switch(str.toLowerCase()) {
+		case "fender": return FENDER;
+		case "martin": return MARTIN;
+		case "gibson": return GIBSON;
+		case "collings": return COLLINGS;
+		case "olson": return OLSON;
+		case "ryan": return RYAN;
+		case "prs": return PRS;
+		case "":
+		case "any": return ANY;
 		default: return null;
 		}
+	}
+	
+	public static String printPossibleValues() {
+		String possible = Arrays.asList(values()).subList(0, values().length-1).toString();
+		return possible.substring(1, possible.length()-1);
 	}
 }

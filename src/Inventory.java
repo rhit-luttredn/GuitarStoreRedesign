@@ -40,7 +40,7 @@ public class Inventory {
 	}
 
 	public void removeGuitar(String serialNumber) {
-
+		
 	}
 
 	public List<Guitar> searchGuitar(GuitarSpec spec) {
