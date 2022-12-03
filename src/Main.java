@@ -83,9 +83,6 @@ public class Main {
 			case "remove":
 				this.handleRemoveGuitar();
 				break;
-			case "logout":
-				System.out.println("TODO: implement logout");
-				break;
 			case "exit":
 				System.out.println("Exiting...");
 				return;
@@ -96,7 +93,6 @@ public class Main {
 					System.out.println("  `add` to add a guitar to the inventory.");
 					System.out.println("  `remove` to remove a guitar from the inventory by serial number.");
 				}
-				System.out.println("  `logout` to logout of the current account");
 				System.out.println("  `exit` to exit the application.");
 				System.out.println("  `help` to see this.");
 				break;
@@ -168,7 +164,7 @@ public class Main {
 
 	private void handleSearchGuitar() {
 		// Builder
-		String prompt = "Please enter the builder.\n Available builders: " + Builder.printPossibleValues() + 
+		String prompt = "Please enter the builder.\nAvailable builders: " + Builder.printPossibleValues() + 
 				" or leave empty for any builder";
 		Builder builder = (Builder) validateEnumEntry(Builder.class, prompt, "Invalid builder.", true, true);
 		
@@ -209,7 +205,7 @@ public class Main {
 			String price = sc.nextLine();
 			
 			// Builder
-			String prompt = "Please enter the builder.\n Available builders: " + Builder.printPossibleValues();
+			String prompt = "Please enter the builder.\nAvailable builders: " + Builder.printPossibleValues();
 			Builder builder = (Builder) validateEnumEntry(Builder.class, prompt, "Invalid builder.", true, false);
 			
 			// Model
