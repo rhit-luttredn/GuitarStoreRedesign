@@ -8,6 +8,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -245,7 +246,64 @@ public class Main {
 	}
 
 	private void handleRemoveGuitar() {
-
+		if(this.active instanceof Employee) {
+			System.out.println("Enter the serial number of the guitar you would like to remove:");
+			String serial = sc.nextLine();
+			this.inventory.removeGuitar(serial);
+			List<CSVRecord> guitarRecords = new LinkedList<CSVRecord>();
+			boolean foundEntry = this.removeCSVRecord(serial, guitarRecords);
+			if(foundEntry) {
+				try (CSVPrinter printer = new CSVPrinter(new FileWriter(INVENTORY_FILE, false),
+						CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
+					for(CSVRecord record : guitarRecords) {
+						String cereal = record.get(0);
+						String price = record.get(1);
+						String builder = record.get(2);
+						String model = record.get(3);
+						String type = record.get(4);
+						String backwood = record.get(5);
+						String topwood = record.get(6);
+						printer.printRecord(cereal, price, builder, model, type, backwood, topwood);
+					}
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			} else {
+				System.out.println("Error: No guitar was found with the specified csv.");
+				this.handleRemoveGuitar();
+			}
+		} else {
+			System.out.println("You do not have permission to use this command.");
+			this.handleCommand();
+		}
+	}
+	
+	//returns true if record is found
+	private boolean removeCSVRecord(String serial, List<CSVRecord> records) {
+		boolean boof = false;
+		try {
+			FileReader file = new FileReader(new File(INVENTORY_FILE));
+			CSVParser parser = CSVParser.parse(file, CSVFormat.DEFAULT.withFirstRecordAsHeader());
+			//put all records into list
+			//iterate through list to find record with matching serial
+			//remove it from list
+			//write to file
+			for(CSVRecord csvRecord : parser) {
+				if(csvRecord.get(0).equals(serial)) {
+					boof = true;
+					continue;
+				} else {
+					records.add(csvRecord);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("File not found");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error parsing csv");
+		}
+		return boof;
 	}
 
 }
