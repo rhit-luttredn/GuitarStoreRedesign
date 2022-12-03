@@ -233,7 +233,7 @@ public class Main {
 
 			try (CSVPrinter printer = new CSVPrinter(new FileWriter(INVENTORY_FILE, true),
 					CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
-				printer.printRecord(serial, price, builder, model, type, backwood, topwood);
+				printer.printRecord(serial, "$" + price, builder, model, type, backwood, topwood);
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
