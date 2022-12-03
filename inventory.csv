@@ -1,3 +1,13 @@
 serialNumber,price,builder,model,type,backWood,topWood
-1234,$200.00 ,Fender,Stratocaster,Electric,Alder,Alder
-217,12.99,campworld co.,chinulon 3000,acoustic,brown,blue
+1234,$200.00 ,Fender,Stratocaster,Electric,Indian Rosewood,Adirondack
+217,$12.99 ,Martin,chinulon 3000,Acoustic,Brazilian Rosewood,Alder
+424352,$123.12 ,Gibson,foo,Electric,Mahogany,Indian Rosewood
+46345623,$34.12 ,Collings,bar,Acoustic,Maple,Brazilian Rosewood
+466734,$100.00 ,Olson,foobar,Electric,Cocobolo,Mahogany
+24563243,$432.13 ,Ryan,random model,Acoustic,Adirondack,Maple
+6534,$84.13 ,PRS,I know guitars,Electric,Alder,Cocobolo
+5645,$53.10 ,Fender,yep,Acoustic,Indian Rosewood,Adirondack
+2684,$99.10 ,Martin,totally,Electric,Brazilian Rosewood,Alder
+8464,$1.99 ,Gibson,one hundred,Acoustic,Mahogany,Indian Rosewood
+6787565,$42.48 ,Collings,percent,Electric,Maple,Brazilian Rosewood
+748564,$17.47 ,Olson,mhm,Acoustic,Cocobolo,Mahogany
