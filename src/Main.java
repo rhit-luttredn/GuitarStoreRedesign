@@ -259,6 +259,7 @@ public class Main {
 						String topwood = record.get(6);
 						printer.printRecord(cereal, price, builder, model, type, backwood, topwood);
 					}
+					System.out.println("Successfully removed entry with serial " + serial);
 				} catch (IOException ex) {
 					ex.printStackTrace();
 				}
