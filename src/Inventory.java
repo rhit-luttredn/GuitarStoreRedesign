@@ -127,8 +127,4 @@ public class Inventory {
 
 		return guitars;
 	}
-
-	public List<Guitar> searchGuitarSingleAttribute(GuitarSpec spec) {
-		return null;
-	}
 }
