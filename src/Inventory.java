@@ -78,8 +78,52 @@ public class Inventory {
 	public void removeGuitar(String serialNumber) {
 
 	}
+	
+	public static List<Guitar> union(List<Guitar> list1, List<Guitar> list2) {
+		if (list1.isEmpty())
+			return list2;
+		if (list2.isEmpty())
+			return list1;
+		
+		LinkedList<Guitar> guitars = new LinkedList<>();
+		for (Guitar g1 : list1) {
+			for (Guitar g2 : list2) {
+				if (g1 == g2) {
+					guitars.add(g1);
+					break;
+				}
+			}
+		}
+		return guitars;
+	}
 
 	public List<Guitar> searchGuitar(GuitarSpec spec) {
+		LinkedList<Guitar> guitars = new LinkedList<>();
+		
+		Builder builder = spec.getBuilder();
+		if (builder != null) 
+			guitars.addAll(this.builderHash.get(builder));
+		
+		String model = spec.getModel().toLowerCase();
+		if (!model.equals("")) 
+			guitars = (LinkedList<Guitar>) union(guitars, this.modelHash.get(model));
+		
+		Type type = spec.getType();
+		if (type != null)
+			guitars = (LinkedList<Guitar>) union(guitars, this.typeHash.get(type));
+		
+		Wood backwood = spec.getBackWood();
+		if (backwood != null) 
+			guitars = (LinkedList<Guitar>) union(guitars, this.backwoodHash.get(backwood));
+		
+		Wood topwood = spec.getTopWood();
+		if (topwood != null) 
+			guitars = (LinkedList<Guitar>) union(guitars, this.topwoodHash.get(topwood));		
+		
+		return guitars;
+	}
+	
+	public List<Guitar> searchGuitarSingleAttribute(GuitarSpec spec) {
 		return null;
 	}
 }
