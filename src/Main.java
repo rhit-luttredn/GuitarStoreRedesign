@@ -87,7 +87,7 @@ public class Main {
 				System.out.println("TODO: implement logout");
 				break;
 			case "exit":
-				System.out.println("TODO: implement exit");
+				System.out.println("Exiting...");
 				return;
 			case "help":
 				System.out.println("Available commands:");
@@ -102,7 +102,6 @@ public class Main {
 				break;
 			default:
 				System.out.println("Invalid command. Try help for more options");
-				this.handleCommand();
 				break;
 			}
 		}
@@ -241,7 +240,6 @@ public class Main {
 
 		} else {
 			System.out.println("You do not have permission to use this command.");
-			this.handleCommand();
 		}
 	}
 
@@ -274,7 +272,6 @@ public class Main {
 			}
 		} else {
 			System.out.println("You do not have permission to use this command.");
-			this.handleCommand();
 		}
 	}
 	
