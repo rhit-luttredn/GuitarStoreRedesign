@@ -19,6 +19,11 @@ public class Inventory {
 
 	public Inventory(Reader file) throws Exception {
 		this.guitars = new LinkedList<>();
+		this.builderHash = new HashMap<>();
+		this.modelHash = new HashMap<>();
+		this.typeHash = new HashMap<>();
+		this.backwoodHash = new HashMap<>();
+		this.topwoodHash = new HashMap<>();
 
 		// TODO: Parse file and populate guitars
 		CSVParser parser = CSVParser.parse(file, CSVFormat.DEFAULT.withFirstRecordAsHeader());
@@ -79,7 +84,47 @@ public class Inventory {
 
 	}
 
+	public static List<Guitar> union(List<Guitar> list1, List<Guitar> list2) {
+		if (list1.isEmpty())
+			return list2;
+		if (list2.isEmpty())
+			return list1;
+
+		LinkedList<Guitar> guitars = new LinkedList<>();
+		for (Guitar g1 : list1) {
+			for (Guitar g2 : list2) {
+				if (g1 == g2) {
+					guitars.add(g1);
+					break;
+				}
+			}
+		}
+		return guitars;
+	}
+
 	public List<Guitar> searchGuitar(GuitarSpec spec) {
-		return null;
+		LinkedList<Guitar> guitars = new LinkedList<>();
+
+		Builder builder = spec.getBuilder();
+		if (builder != Builder.ANY)
+			guitars.addAll(this.builderHash.get(builder));
+
+		String model = spec.getModel().toLowerCase();
+		if (!model.equals(""))
+			guitars = (LinkedList<Guitar>) union(guitars, this.modelHash.get(model));
+
+		Type type = spec.getType();
+		if (type != Type.ANY)
+			guitars = (LinkedList<Guitar>) union(guitars, this.typeHash.get(type));
+
+		Wood backwood = spec.getBackWood();
+		if (backwood != Wood.ANY)
+			guitars = (LinkedList<Guitar>) union(guitars, this.backwoodHash.get(backwood));
+
+		Wood topwood = spec.getTopWood();
+		if (topwood != Wood.ANY)
+			guitars = (LinkedList<Guitar>) union(guitars, this.topwoodHash.get(topwood));
+
+		return guitars;
 	}
 }

@@ -190,7 +190,12 @@ public class Main {
 		Wood topwood = (Wood) validateEnumEntry(Wood.class, prompt, "Invalid wood.", true, true);
 
 		GuitarSpec spec = new GuitarSpec(builder, model, type, backwood, topwood);
-		this.inventory.searchGuitar(spec);
+		List<Guitar> guitars = this.inventory.searchGuitar(spec);
+		
+		System.out.println("Found " + guitars.size() + " guitars");
+		for (Guitar guitar : guitars) {
+			System.out.println(guitar);
+		}
 	}
 
 	private void handleAddGuitar() {
@@ -228,7 +233,7 @@ public class Main {
 
 			try (CSVPrinter printer = new CSVPrinter(new FileWriter(INVENTORY_FILE, true),
 					CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
-				printer.printRecord(serial, price, builder, model, type, backwood, topwood);
+				printer.printRecord(serial, "$" + price, builder, model, type, backwood, topwood);
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
